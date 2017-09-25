@@ -5,9 +5,20 @@
     (require '[cats.monad.either :as e])
     (require '[watch.core :as w]))
 
-(w/reload (require '[mosql.core :as mo])
-          "src/mosql/core.clj"
-          (run-tests 'mosql.core))
+(w/reload (require '[mosql.fun :as fun])
+          "src/mosql/fun.clj")
 
-(w/watch "test/mosql/core_test.clj"
-         (fn [ctx e] (run-tests 'mosql.core)))
+(w/reload (require '[mosql.generators :as ge])
+          "src/mosql/generators.clj")
+
+
+(w/reload (require '[mosql.core :as mo])
+          "src/mosql/core.clj")
+
+
+
+;(w/watch "test/mosql/generators_test.clj"
+;         (fn [ctx e] (run-tests 'mosql.generators)))
+
+
+

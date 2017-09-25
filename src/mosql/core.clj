@@ -20,24 +20,8 @@
             [cats.context :as ctx :refer [with-context]]
             ;[cats.builtin]
             [clojure.java.jdbc :as j]
+            [mosql.fun :refer :all]
             [mosql.generators :as g :refer [gen-insert gen-update]]))
-
-(defn efirst
-  "Like \"first\" but returns a left when nil or right when get a value."
-  [se]
-  (let [fi (first se)]
-    (if (nil? fi)
-      (left)
-      (right fi))))
-
-(defn eget
-  "Like \"get\" but return left when get a nil or right when get a value."
-  [hs k]
-  (let [v (get hs k)]
-    (if (nil? k)
-      (e/left k)
-      (right v))))
-
 
 (defn insert!
   ([conn table data]
